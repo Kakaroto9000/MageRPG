@@ -1,21 +1,20 @@
 using UnityEngine;
 
 public class HPPlayer : MonoBehaviour {
-    /*public GameObject objectOfAttackPrefab;
+    public  static float hpPlayer = 100f;
+    public GameObject objectOfAttackPrefab;
     void OnTriggerEnter(Collider objectOfAttackInTriggerZone) {
         GameObject attack = Instantiate(objectOfAttackPrefab, objectOfAttackInTriggerZone.transform.position, objectOfAttackInTriggerZone.transform.rotation);
         Destroy(objectOfAttackInTriggerZone.gameObject);
         GetDamage();
-    } */
-    public float hpPlayer = 100f;
-    public void GetDamage(float damage) 
-{
+        HPText.ChangeHealthText(hpPlayer);
+    }
+    private void GetDamage() {
         if (hpPlayer > 0) {
-            hpPlayer -= damage;
+            hpPlayer -= 10;
         } else {
             print("You are not deathless, so game over");
             Destroy(gameObject);
         }
-        HPText.ChangeHealthText(hpPlayer);
     }
 }

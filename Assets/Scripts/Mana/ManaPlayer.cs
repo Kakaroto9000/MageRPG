@@ -16,7 +16,7 @@ public class ManaPlayer : MonoBehaviour {
     } //вызов этой функции в месте где instantiate у фаербола
     public void RecoveryMana() {
         time += Time.deltaTime;
-        if (time > 0.4) {
+        if (time > 1) {
             manaPlayer += 1f;
             time = 0f;
             ManaText.ChangeManaText(manaPlayer);
