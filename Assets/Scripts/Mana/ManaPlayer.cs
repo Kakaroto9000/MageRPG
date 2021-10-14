@@ -1,25 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
+using Mirror;
 using UnityEngine;
 
-public class ManaPlayer : MonoBehaviour {
-    public static float manaPlayer = 100f;
+public class ManaPlayer : NetworkBehaviour
+{
+    public float MaxMana;
+
+    [SyncVar]
+    public float PlayerMana;
     private float time = 0f;
-    void Update() {
-        if (manaPlayer < 100) {
+
+    private void Start()
+    {
+        PlayerMana = MaxMana;
+    }
+    void Update() 
+    {
+        if (PlayerMana < MaxMana)
+        {
             RecoveryMana();
         }
     }
-    public void DecrementMana() {
-        manaPlayer -= 20f;
-        ManaText.ChangeManaText(manaPlayer);
+    [Command]
+    public void DecrementMana()
+    {
+        PlayerMana -= 20f;
+        ManaText.ChangeManaText(PlayerMana);
     } //вызов этой функции в месте где instantiate у фаербола
-    public void RecoveryMana() {
+    [Command]
+    public void RecoveryMana()
+    {
         time += Time.deltaTime;
         if (time > 1) {
-            manaPlayer += 1f;
+            PlayerMana += 1f;
             time = 0f;
-            ManaText.ChangeManaText(manaPlayer);
+            ManaText.ChangeManaText(PlayerMana);
         }
     }
 }

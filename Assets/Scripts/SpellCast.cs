@@ -1,11 +1,9 @@
-using System;
-using System.Collections;
+
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.EventSystems;
+using Mirror;
 
-public class SpellCast : MonoBehaviour
+public class SpellCast : NetworkBehaviour
 {
     private static SpellCast Instance;
     public Dictionary<int, string> Spells = new Dictionary<int, string>();
@@ -37,6 +35,7 @@ public class SpellCast : MonoBehaviour
             }
         }
     }
+    [Command]
     public void CastFireball()
     {
         Ray ray = new Ray();

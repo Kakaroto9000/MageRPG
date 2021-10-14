@@ -1,17 +1,22 @@
 using UnityEngine;
+using Mirror;
+public class HPPlayer : NetworkBehaviour
+{
+    [SyncVar]
+    public float HpPlayer = 100f;
 
-public class HPPlayer : MonoBehaviour {
-    public  static float hpPlayer = 100f;
     public GameObject objectOfAttackPrefab;
+
     void OnTriggerEnter(Collider objectOfAttackInTriggerZone) {
         GameObject attack = Instantiate(objectOfAttackPrefab, objectOfAttackInTriggerZone.transform.position, objectOfAttackInTriggerZone.transform.rotation);
         Destroy(objectOfAttackInTriggerZone.gameObject);
         GetDamage();
-        HPText.ChangeHealthText(hpPlayer);
+        HPText.ChangeHealthText(HpPlayer);
     }
+    [Command]
     private void GetDamage() {
-        if (hpPlayer > 0) {
-            hpPlayer -= 10;
+        if (HpPlayer > 0) {
+            HpPlayer -= 10;
         } else {
             print("You are not deathless, so game over");
             Destroy(gameObject);
