@@ -1,6 +1,5 @@
-
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections.Generic;
 using Mirror;
 
 public class SpellCast : NetworkBehaviour
