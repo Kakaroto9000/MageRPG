@@ -21,6 +21,8 @@ public class SpellCast : NetworkBehaviour
     }
     private void Update()
     {
+        if (!isLocalPlayer)
+            return;
         if (Input.GetMouseButtonDown(0))
         {
             int newSpellCode = SpellCode;
